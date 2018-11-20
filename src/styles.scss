@@ -12,14 +12,29 @@
   min-height: 500px;
 }
 
+span {
+  display: flex;
+  flex-direction: row;
+}
+
 input {
   display: flex;
   background-color: white;
   margin-top: 20px;
 }
-button {
+button:enabled {
   display: flex;
   background-color: royalblue;
+  padding: 10px;
+  margin: auto;
+  color: white;
+  margin-top: 20px;
+}
+
+button:disabled {
+  background: #dddddd;
+  display: flex;
+  // background-color: royalblue;
   padding: 10px;
   margin: auto;
   color: white;

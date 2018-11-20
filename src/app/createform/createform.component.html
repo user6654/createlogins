@@ -1,38 +1,17 @@
-<!--
-<form (ngSubmit)="onSubmit(form)" #form="ngForm">
-  <div class="form-group">
-    <br />
-    <label> Member Name</label>
-    <input type="text" id="name" name="username" class="form-control" ngModel />
-  </div>
-
-  <div class="form-group">
-    <label>Password</label>
-    <input
-      type="text"
-      id="password"
-      name="password"
-      class="form-control"
-      ngModel
-    />
-  </div>
-
-
-</form>
--->
-
-
 <div class="container">
   <form [formGroup]="submittedForm" (ngSubmit)="onSubmit(submittedForm)">
-    <input type="text" formControlName="username" />
-    <input type="text" formControlName="password" />
+    <span>Username: </span><input type="text" formControlName="username" />
+    <span>Password: </span><input type="text" formControlName="password" />
+    <span>Retype Password: </span><input type="text" formControlName="confirmPassword" />
 
-    <button [disabled]="!submittedForm.valid" class="btn btn-primary" type="submit">Confirm Registration</button>
+    <button [disabled]="!submittedForm.valid && !isPasswordConfirm" class="btn btn-primary" type="submit">Confirm Registration</button>
     {{ dummyConfirmationMessage }}
   </form>
-  <h2>For testing only:</h2>
-  {{ users | json }}
-  <button class="btn btn-primary" (click)="gotoRegistration()">Old User? Sign In</button>
+  <!-- <h2>For testing only:</h2> -->
+
+  <!-- <button class="btn btn-primary" (click)="gotoLogin()">Old User? Sign In</button> -->
 </div>
+
+
 
 

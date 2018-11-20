@@ -1,74 +1,97 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators
+} from "@angular/forms";
 
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { delay } from 'rxjs/operators';
 
-import { FormActionsService } from '../form-actions.service';
+import { Router } from "@angular/router";
+
+import { FormActionsService } from "../form-actions.service";
 
 @Component({
-  selector: 'app-createform',
-  templateUrl: './createform.component.html',
-  styleUrls: ['./createform.component.scss']
+  selector: "app-createform",
+  templateUrl: "./createform.component.html",
+  styleUrls: ["./createform.component.scss"]
 })
 export class CreateformComponent implements OnInit {
   public users = [];
-  public submittedForm : FormGroup;
-  public dummyConfirmationMessage = '';
+  public submittedForm: FormGroup;
+  public dummyConfirmationMessage = "";
+  confirmPassword = '';
 
   formService: FormActionsService;
 
-  constructor(formService: FormActionsService, private fb: FormBuilder, private router: Router) {
-
-
-
+  constructor(
+    formService: FormActionsService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.formService = formService;
     this.users = this.formService.getUsers;
-
   }
 
   ngOnInit() {
-    this.submitForm()
+    this.submitForm();
   }
 
   private submitForm() {
     this.submittedForm = this.fb.group({
-      username : new FormControl('',Validators.required),
-      password: new FormControl('',Validators.required),
-    })
+      username: new FormControl("", Validators.required),
+      password: new FormControl("", Validators.required),
+      confirmPassword: new FormControl("", ),
+    });
   }
 
-  public onSubmit(){
-    const user = this.submittedForm.value
-    this.findUser(user)
+  public onSubmit() {
+    const user = this.submittedForm.value;
+
+    console.log (this.users);
+
+    delay(5000);
+    this.findUser(user);
+    this.gotoLogin();
   }
 
-  get isPasswordConfirm(){
-    return true
+  //
+
+  get isPasswordConfirm() {
+    if (this.submittedForm.value.password === this.submittedForm.value.confirmPassword){
+      return false;
+    } else return true;
   }
 
   public findUser(user) {
     this.users.some(userFromArr => {
-      if (userFromArr.username === user.username && userFromArr.password === user.password) {
+      if (
+        userFromArr.username === user.username &&
+        userFromArr.password === user.password
+      ) {
         this.dummyConfirmationMessage = "Duplicate user detected!";
-        return true
+        return true;
       } else {
         console.log(`user.username: ${user.username}`);
         this.dummyConfirmationMessage = "Unique user registered!";
-        this.formService.addUser(this.submittedForm.value.username, this.submittedForm.value.password);
+        this.formService.addUser(
+          this.submittedForm.value.username,
+          this.submittedForm.value.password
+        );
       }
-    })
+    });
   }
 
-  gotoRegistration() {
-    this.router.navigate(['/login', { }]);
+  gotoLogin() {
+    this.router.navigate(["/login", {}]);
   }
+}
 
 /*
-  onSubmit(submittedForm) {
-    console.log(submittedForm.value);
-    this.formService.addUser(submittedForm.value.username, submittedForm.value.password);
-    this.dummyConfirmationMessage = 'Registration Submitted'
-  }
-*/
 
-}
+~  clean buttons
+~  confirm password
+~  register button reroutes sign in
+
+*/

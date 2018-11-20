@@ -6,7 +6,9 @@
     <button class="btn btn-primary" type="submit">Sign In</button>
     {{ lookupMessage }}
   </form>
-  <h2>For testing only:</h2>
-  {{ users | json }}
-  <button class="btn btn-primary" type="submit">New Sign Up</button>
+  <!-- <h2>For testing only:</h2> -->
+
+<!--{{ users | json }}-->
+
+  <button class="btn btn-primary" (click)="gotoRegistration()">New Sign Up</button>
 </div>
