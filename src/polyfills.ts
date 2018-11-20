@@ -74,6 +74,7 @@
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
+import 'core-js/es7/reflect'; // to avoid Can't resolve all parameters for ApplicationModule: (?) ERROR.
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
