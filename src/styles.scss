@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+
+.container {
+  justify-content: center;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+  min-height: 500px;
+}
+
+input {
+  display: flex;
+  background-color: white;
+  margin-top: 20px;
+}
+button {
+  display: flex;
+  background-color: royalblue;
+  padding: 10px;
+  margin: auto;
+  color: white;
+  margin-top: 20px;
+}
+
+.indicator {
+  text-align: center;
+  margin-top: 20px;
+}
