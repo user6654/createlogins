@@ -6,8 +6,9 @@ import { LookupformComponent }      from './lookupform/lookupform.component';
 
 const routes: Routes = [
   {path: 'register' ,               component:CreateformComponent},
-  {path: '**' ,                     redirectTo: 'login' },
+  // {path: '**' ,                     redirectTo: 'login' },
   {path: 'login' ,                  component:LookupformComponent}
+
 ];
 
 @NgModule({

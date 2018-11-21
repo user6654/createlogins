@@ -6,8 +6,6 @@ import {
   Validators
 } from "@angular/forms";
 
-import { delay } from 'rxjs/operators';
-
 import { Router } from "@angular/router";
 
 import { FormActionsService } from "../form-actions.service";
@@ -18,10 +16,11 @@ import { FormActionsService } from "../form-actions.service";
   styleUrls: ["./createform.component.scss"]
 })
 export class CreateformComponent implements OnInit {
+  enableOnRetypedPass=false;
   public users = [];
   public submittedForm: FormGroup;
   public dummyConfirmationMessage = "";
-  confirmPassword = '';
+  confirmPassword = null;
 
   formService: FormActionsService;
 
@@ -36,13 +35,16 @@ export class CreateformComponent implements OnInit {
 
   ngOnInit() {
     this.submitForm();
+    if (this.submittedForm.value.password === this.submittedForm.value.confirmPassword){
+      this.enableOnRetypedPass=true;
+    } else return this.enableOnRetypedPass=false;
   }
 
   private submitForm() {
     this.submittedForm = this.fb.group({
       username: new FormControl("", Validators.required),
-      password: new FormControl("", Validators.required),
-      confirmPassword: new FormControl("", ),
+      password: new FormControl("", Validators.required)
+      // confirmPassword: new FormControl("", ),
     });
   }
 
@@ -51,18 +53,15 @@ export class CreateformComponent implements OnInit {
 
     console.log (this.users);
 
-    delay(5000);
     this.findUser(user);
     this.gotoLogin();
   }
 
   //
 
-  get isPasswordConfirm() {
-    if (this.submittedForm.value.password === this.submittedForm.value.confirmPassword){
-      return false;
-    } else return true;
-  }
+  // get isPasswordConfirm() {
+
+  // }
 
   public findUser(user) {
     this.users.some(userFromArr => {
