@@ -6,6 +6,7 @@ import {
   Validators
 } from "@angular/forms";
 
+// import {delay} from 'rxjs';
 import { Router } from "@angular/router";
 
 import { FormActionsService } from "../form-actions.service";
@@ -16,11 +17,10 @@ import { FormActionsService } from "../form-actions.service";
   styleUrls: ["./createform.component.scss"]
 })
 export class CreateformComponent implements OnInit {
-  enableOnRetypedPass=false;
+
   public users = [];
   public submittedForm: FormGroup;
   public dummyConfirmationMessage = "";
-  confirmPassword = null;
 
   formService: FormActionsService;
 
@@ -35,17 +35,19 @@ export class CreateformComponent implements OnInit {
 
   ngOnInit() {
     this.submitForm();
-    if (this.submittedForm.value.password === this.submittedForm.value.confirmPassword){
-      this.enableOnRetypedPass=true;
-    } else return this.enableOnRetypedPass=false;
+
   }
 
   private submitForm() {
+    console.log("here");
     this.submittedForm = this.fb.group({
       username: new FormControl("", Validators.required),
-      password: new FormControl("", Validators.required)
-      // confirmPassword: new FormControl("", ),
+      password: new FormControl("", Validators.required),
+      confirmPassword: new FormControl("", ),
     });
+    /*isPasswordConfirm();*/
+
+
   }
 
   public onSubmit() {
@@ -54,14 +56,16 @@ export class CreateformComponent implements OnInit {
     console.log (this.users);
 
     this.findUser(user);
-    this.gotoLogin();
   }
 
+
+
   //
+/*
+    public isPasswordConfirm() {
 
-  // get isPasswordConfirm() {
+    }*/
 
-  // }
 
   public findUser(user) {
     this.users.some(userFromArr => {
@@ -69,7 +73,7 @@ export class CreateformComponent implements OnInit {
         userFromArr.username === user.username &&
         userFromArr.password === user.password
       ) {
-        this.dummyConfirmationMessage = "Duplicate user detected!";
+        this.dummyConfirmationMessage = "User name exits. Register a different name.";
         return true;
       } else {
         console.log(`user.username: ${user.username}`);
@@ -78,12 +82,24 @@ export class CreateformComponent implements OnInit {
           this.submittedForm.value.username,
           this.submittedForm.value.password
         );
+        // delay(1000);
+        this.gotoLogin();
       }
     });
   }
 
   gotoLogin() {
     this.router.navigate(["/login", {}]);
+  }
+
+  get password(): string{
+    return this.submittedForm.get('password').value
+  }
+  get confirmPassword():string{
+    return this.submittedForm.get('confirmPassword').value
+  }
+  get disableOnInvalidAndUnconfirmedPass():boolean{
+      return (this.submittedForm.valid && this.password === this.confirmPassword)
   }
 }
 

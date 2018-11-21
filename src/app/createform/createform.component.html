@@ -1,20 +1,21 @@
 <div class="wrapper">
-<div class="container">
-    <h1>Create New Sign In</h1>
+  <div class="container">
+      <h2>Create New Sign In</h2>
+      <form class="form" [formGroup]="submittedForm" (ngSubmit)="onSubmit(submittedForm)">
+          <input type="text" formControlName="username" placeholder="New Username" />
+          <input type="password" formControlName="password" placeholder="New Password" />
+          <input type="password" formControlName="confirmPassword" placeholder="Confirm New Password" />
 
-    <form class="form" [formGroup]="submittedForm" (ngSubmit)="onSubmit(submittedForm)">
-        <input type="text" formControlName="username" placeholder="New Username" />
-        <input type="password" formControlName="password" placeholder="New Password" />
-        <input type="password" formControlName="confirmPassword" placeholder="Confirm New Password" />
-
-    <button [disabled]="!enableOnRetypedPass" class="btn btn-primary" type="submit" id="login-button"><b>Complete Registration</b></button>
-    {{ dummyConfirmationMessage }}
-  </form>
-  <!-- <h2>For testing only:</h2> -->
-
-  <!-- <button class="btn btn-primary" (click)="gotoLogin()">Old User? Sign In</button> -->
+      <button [disabled]="!disableOnInvalidAndUnconfirmedPass" class="btn btn-primary" type="submit" id="login-button"><b>Complete Registration</b></button>
+      {{ this.dummyConfirmationMessage }}
+    </form>
+    </div>
   </div>
-</div>
 
 
 
+
+
+    <!-- <h2>For testing only:</h2> -->
+
+    <!-- <button class="btn btn-primary" (click)="gotoLogin()">Old User? Sign In</button> -->
