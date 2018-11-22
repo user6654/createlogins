@@ -1,12 +1,12 @@
 <div class="wrapper">
   <div class="container">
-      <h2>Create New Sign In</h2>
+      <h2 id="TITLE">Create New Sign In</h2>
       <form class="form" [formGroup]="submittedForm" (ngSubmit)="onSubmit(submittedForm)">
-          <input type="text" formControlName="username" placeholder="New Username" />
-          <input type="password" formControlName="password" placeholder="New Password" />
-          <input type="password" formControlName="confirmPassword" placeholder="Confirm New Password" />
+          <input id="USERNAME" type="text" formControlName="username" placeholder="New Username" />
+          <input id="PASSWORD" type="password" formControlName="password" placeholder="New Password" />
+          <input id="CONFIRM-PASSWORD" type="password" formControlName="confirmPassword" placeholder="Confirm New Password" />
 
-      <button [disabled]="!disableOnInvalidAndUnconfirmedPass" class="btn btn-primary" type="submit" id="login-button"><b>Complete Registration</b></button>
+      <button id="LOGIN-BUTTON" [disabled]="!disableOnInvalidAndUnconfirmedPass" class="btn btn-primary" type="submit"><b>Complete Registration</b></button>
       {{ this.dummyConfirmationMessage }}
     </form>
     </div>
