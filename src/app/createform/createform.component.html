@@ -1,15 +1,20 @@
 <div class="wrapper">
-  <div class="container">
+	<div class="container">
+		<h2 class="TITLE">Create New Sign In</h2>
+		<form class="form" [formGroup]="submittedForm" (ngSubmit)="onSubmit(submittedForm)">
 
-    <h2 class="TITLE">Create New Sign In</h2>
+      <label>Username</label>
+      <input type="text" formControlName="username" placeholder="New Username"/>
 
-    <form  class="form"   [formGroup]="submittedForm"     (ngSubmit)="onSubmit(submittedForm)"    >
-     <label>Username </label><input       type="text"       formControlName="username"        placeholder="New Username"      />
-     <label>Password </label><input        type="password"        formControlName="password"        placeholder="New Password"      />
-     <label>Confirm Password</label> <input        type="password"        formControlName="confirmPassword"        placeholder="Confirm New Password"      />
+      <label>Password</label>
+      <input type="password" formControlName="password" placeholder="New Password"/>
+
+      <label>Confirm Password</label>
+      <input type="password" formControlName="confirmPassword" placeholder="Confirm New Password"/>
+
     </form>
     <button [disabled]="!disableOnInvalidAndUnconfirmedPass" class="btn btn-primary" type="submit">Complete Registration</button>
-      {{ this.dummyConfirmationMessage }}
+    {{ this.dummyConfirmationMessage }}
   </div>
 </div>
 
@@ -19,8 +24,3 @@
 <!--
   <button class="btn btn-primary" (click)="gotoLogin()">Old User? Sign In</button>
 -->
-
-
-
-
-

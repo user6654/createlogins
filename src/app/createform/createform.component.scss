@@ -2,36 +2,57 @@
 .wrapper {
 
 
-  margin: 1%;
-  padding: 20px;
+  margin: auto;
+  padding: 0px;
   .container {
     display:grid;
-    text-align: left;
+    margin: 5px;
+    text-align: center;
     border: solid;
     border-color: black;
-    border-width: 1px;
-    padding: 15%;
+    border-width: 3px;
+    padding: 50px;
     font-weight: bold;
+
+    .TITLE {
+      display: flex;
+      justify-content: center
+    }
+
+
+        form {
+        display: grid;
+        //grid                   / 1stColWidth 2ndColWidth
+        grid: 40px 40px 40px 15px /  140px 200px;
+        //magin --  T / R / B / L
+        margin: 10px auto 10px auto;
+
+        label {
+        margin: 7px 1px 1px 1px;
+        padding: 7px 0px 0px 0px;
+        text-align: center;
+        }
+
+
+        input {
+        display: block;
+        appearance: none;
+        margin: 2px 2px 2px 2px;
+        padding: 10px  3px 10px  3px ;
+        text-align: center;
+
+        }
+
+    }
+
+    button {
+    margin:  auto;
+    padding: 16px 80px 16px 80px;
+    font-weight: bold;
+    border-width: 1px;
+    border-radius: 50px;
+    }
+
   }
 }
 
-.TITLE {display: flex; justify-content: center}
-
-input {
-  //margin-right: 10px;
-  text-align: center;
-
-}
-
-form {
-  display: grid;
-  grid: auto-flow  35px / 150px 150px;
-  margin: 10px auto 15px auto;
-  // place-items: center;
-}
-
-button {
-  margin: 5px auto 5px auto;
-  padding: 8px;
-  font-weight: bold;
-}
