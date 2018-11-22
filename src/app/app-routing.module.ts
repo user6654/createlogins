@@ -6,8 +6,8 @@ import { LookupformComponent }      from './lookupform/lookupform.component';
 
 const routes: Routes = [
   {path: 'register' ,               component:CreateformComponent},
-  {path: '**' ,                     redirectTo: 'login' },
-  {path: 'login' ,                  component:LookupformComponent}
+  {path: 'login' ,                  component:LookupformComponent},
+  {path: '**' ,                     redirectTo: 'register' }
 
 ];
 
